@@ -23,10 +23,8 @@ namespace CrossPlatformLabs.Tests.Labs
         [InlineData(9, 8, 0)]
         public void CalculateRookPlacements_ValidInput(int N, int K, long expected)
         {
-            // Act
             long result = _firstLab.CalculateRookPlacements(N, K);
 
-            // Assert
             Assert.Equal(expected, result);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using CrossPlatformLabs.Labs;
+using CrossPlatformLabs.Service;
 
 namespace CrossPlatformLabs
 {
@@ -6,9 +7,22 @@ namespace CrossPlatformLabs
     {
         static void Main(string[] args)
         {
-            FirstLab lab1 = new FirstLab();
+            FirstLab firstLab = new FirstLab();
+            FileReader fileReader = new FileReader();
+            FileWriter fileWriter = new FileWriter();
 
-            Console.WriteLine(lab1.CalculateRookPlacements(8, 7));
+            string readPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Resources\Read.txt"));
+            string writePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Resources\Write.txt"));
+
+            int N, K;
+                
+            (N,K)= firstLab.ParseNKValues(fileReader.ReadFile(readPath));
+
+            int res = firstLab.CalculateRookPlacements(N, K);
+
+            Console.WriteLine($"N={N},K={K}, res = {res}");
+
+            fileWriter.WriteResult(writePath, res.ToString());
         }
     }
 }

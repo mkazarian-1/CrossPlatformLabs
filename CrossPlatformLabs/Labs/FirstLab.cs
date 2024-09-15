@@ -8,18 +8,41 @@ namespace CrossPlatformLabs.Labs
 {
     public class FirstLab
     {
-        public long CalculateRookPlacements(int N, int K)
+        public int CalculateRookPlacements(int N, int K)
         {
             if (!Validate(N, K)) return 0;
 
-            long factorialN = Factorial(N);
-            long factorialK = Factorial(K);
-            long factorialNK = Factorial(N - K);
+            int factorialN = Factorial(N);
+            int factorialK = Factorial(K);
+            int factorialNK = Factorial(N - K);
 
-            long accommodationNK = factorialN / factorialNK;
+            int accommodationNK = factorialN / factorialNK;
 
             return (accommodationNK * accommodationNK) / factorialK;
         }
+
+        public (int N, int K) ParseNKValues(string[] lines)
+        {
+            if (lines.Length == 0)
+            {
+                throw new ArgumentException("Input file is empty.");
+            }
+
+            string[] parts = lines[0].Split(' ');
+
+            if (parts.Length != 2)
+            {
+                throw new ArgumentException("Input file must contain exactly two space-separated values for N and K.");
+            }
+
+            if (!int.TryParse(parts[0], out int N) || !int.TryParse(parts[1], out int K))
+            {
+                throw new FormatException("The input file contains invalid integer values for N or K.");
+            }
+
+            return (N, K);
+        }
+
 
         private bool Validate(int N, int K)
         {
@@ -36,14 +59,17 @@ namespace CrossPlatformLabs.Labs
             return true;
         }
 
-        private static long Factorial(int num)
+        private static int Factorial(int num)
         {
-            long result = 1;
+            int result = 1;
             for (int i = 2; i <= num; i++)
             {
                 result *= i;
             }
             return result;
         }
+
+
+
     }
 }
