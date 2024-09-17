@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatformLabs", "CrossPlatformLabs\CrossPlatformLabs.csproj", "{C0F2C980-ABE1-442B-BA37-142F4638A53E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossPlatformLabs", "CrossPlatformLabs\CrossPlatformLabs.csproj", "{C0F2C980-ABE1-442B-BA37-142F4638A53E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatformLabs.Tests", "CrossPlatformLabs.Tests\CrossPlatformLabs.Tests.csproj", "{E96B4CBE-8180-4F5D-80AD-E27EB1FF5E2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossPlatformLabs.Tests", "CrossPlatformLabs.Tests\CrossPlatformLabs.Tests.csproj", "{E96B4CBE-8180-4F5D-80AD-E27EB1FF5E2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
