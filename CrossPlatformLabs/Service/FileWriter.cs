@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrossPlatformLabs.Service
 {
-    internal class FileWriter
+    public class FileWriter
     {
         public void WriteResult(string outputFilePath, string output)
         {

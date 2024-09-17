@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrossPlatformLabs.Service
 {
-    internal class FileReader
+    public class FileReader
     {
         public string[] ReadFile(string inputFilePath)
         {
