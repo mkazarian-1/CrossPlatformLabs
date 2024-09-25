@@ -8,8 +8,14 @@ namespace Lab2.Lab
 {
     public class SecondLab
     {
-        static char[,] Solve(int N, int[,] grid)
+        public char[,] Solve(int N, int[,] grid)
         {
+            if (!this.ValidateInput(N,grid))
+            {
+                Console.WriteLine("Error: Invalid input data.");
+                return new char[0,0];
+            }
+
             int[,] dp = new int[N, N];
             dp[0, 0] = grid[0, 0];
 
@@ -63,6 +69,39 @@ namespace Lab2.Lab
 
             return result;
         }
+
+        public (int N, int[,] grid) Parser(string[] input)
+        {
+            int N = int.Parse(input[0]);
+            int[,] grid = new int[N, N];
+
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    grid[i, j] = input[i + 1][j] - '0';
+                }
+            }
+
+            return (N, grid);
+        }
+
+        public string ResultFormation(char[,] chars)
+        {
+            int N = chars.GetLength(0);
+            var output = new StringBuilder();
+
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    output.Append(chars[i, j]);
+                }
+                output.AppendLine();
+            }
+
+            return output.ToString();
+        }
         private bool ValidateInput(int N, int[,] grid)
         {
 
@@ -75,7 +114,7 @@ namespace Lab2.Lab
             {
                 for (int j = 0; j < N; j++)
                 {
-                    if (grid[i, j] < 0 || grid[i, j] > 9)
+                    if (grid[i, j] < -1 || grid[i, j] > 10)
                     {
                         return false;
                     }
