@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CrossPlatformLabs\CrossPlatformLabs.csproj" />
+    <ProjectReference Include="..\Lab1\Lab1.csproj" />
+    <ProjectReference Include="..\Lab2\Lab2.csproj" />
   </ItemGroup>
 
   <ItemGroup>

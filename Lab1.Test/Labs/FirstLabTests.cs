@@ -1,6 +1,8 @@
-using CrossPlatformLabs.Labs;
 
-namespace CrossPlatformLabs.Tests.Labs
+
+using Lab1.Labs;
+
+namespace Lab1.Tests.Labs
 {
     public class FirstLabTests
     {

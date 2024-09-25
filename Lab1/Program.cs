@@ -1,7 +1,7 @@
-﻿using CrossPlatformLabs.Labs;
-using CrossPlatformLabs.Service;
+﻿using Lab1.Labs;
+using Lab1.Service;
 
-namespace CrossPlatformLabs
+namespace Lab1
 {
     internal class Program
     {
@@ -15,12 +15,20 @@ namespace CrossPlatformLabs
             string writePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Resources\Write.txt"));
 
             int N, K;
-                
-            (N,K)= firstLab.ParseNKValues(fileReader.ReadFile(readPath));
+            string[] input = fileReader.ReadFile(readPath);
+            (N, K) = firstLab.ParseNKValues(fileReader.ReadFile(readPath));
+
+            Console.WriteLine($"Input: {readPath}");
+            Console.WriteLine(string.Join(Environment.NewLine, input));
+            Console.WriteLine();
 
             int res = firstLab.CalculateRookPlacements(N, K);
 
-            Console.WriteLine($"N={N},K={K}, res = {res}");
+            Console.WriteLine($"N={N},K={K}, res = {res}\n");
+
+            Console.WriteLine($"Write: {writePath}");
+            Console.WriteLine(res);
+            Console.WriteLine($"\n");
 
             fileWriter.WriteResult(writePath, res.ToString());
         }

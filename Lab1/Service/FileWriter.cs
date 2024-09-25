@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CrossPlatformLabs.Service
+namespace Lab1.Service
 {
     public class FileWriter
     {

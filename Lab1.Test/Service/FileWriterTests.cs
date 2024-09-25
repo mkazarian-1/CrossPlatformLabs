@@ -1,11 +1,11 @@
-﻿using CrossPlatformLabs.Service;
+﻿using Lab1.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CrossPlatformLabs.Tests.Service
+namespace Lab1.Tests.Service
 {
     public class FileWriterTests
     {

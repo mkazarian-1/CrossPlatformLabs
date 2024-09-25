@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CrossPlatformLabs.Labs
+namespace Lab1.Labs
 {
     public class FirstLab
     {
