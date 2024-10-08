@@ -19,11 +19,14 @@ namespace Lab2
             char[,] result;
 
             string[] input = fileReader.ReadFile(readPath);
-            (N, grid) = secondLab.Parser(fileReader.ReadFile(readPath));
 
             Console.WriteLine($"Input: {readPath}");
             Console.WriteLine(string.Join(Environment.NewLine, input));
             Console.WriteLine();
+
+            if (!secondLab.ValidateInputForMinPath(input)) return;
+
+            (N, grid) = secondLab.Parser(fileReader.ReadFile(readPath));
 
             result = secondLab.Solve(N,grid);
             string res = secondLab.ResultFormation(result);

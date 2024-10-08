@@ -16,11 +16,14 @@ namespace Lab1
 
             int N, K;
             string[] input = fileReader.ReadFile(readPath);
-            (N, K) = firstLab.ParseNKValues(fileReader.ReadFile(readPath));
 
             Console.WriteLine($"Input: {readPath}");
             Console.WriteLine(string.Join(Environment.NewLine, input));
             Console.WriteLine();
+
+            if (!firstLab.ValidateInputForRooks(input)) return;
+
+            (N, K) = firstLab.ParseNKValues(fileReader.ReadFile(readPath));
 
             int res = firstLab.CalculateRookPlacements(N, K);
 

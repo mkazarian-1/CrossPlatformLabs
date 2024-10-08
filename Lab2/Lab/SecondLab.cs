@@ -8,14 +8,44 @@ namespace Lab2.Lab
 {
     public class SecondLab
     {
-        public char[,] Solve(int N, int[,] grid)
+        public bool ValidateInputForMinPath(string[] input)
         {
-            if (!this.ValidateInput(N,grid))
+            if (!int.TryParse(input[0], out int n) || n < 2 || n > 250)
             {
-                Console.WriteLine("Error: Invalid input data.");
-                return new char[0,0];
+                Console.WriteLine("N must be an integer between 2 and 250.");
+                return false;
             }
 
+            if (input.Length != n + 1)
+            {
+                Console.WriteLine("Input does not contain the correct number of rows.");
+                return false;
+            }
+
+            for (int i = 1; i <= n; i++)
+            {
+                if (input[i].Length != n)
+                {
+                    Console.WriteLine($"Row {i} does not have the correct number of characters (expected {n}).");
+                    return false;
+                }
+
+                foreach (char cell in input[i])
+                {
+                    if (!char.IsDigit(cell))
+                    {
+                        Console.WriteLine($"Invalid character '{cell}' in row {i}. Allowed characters are digits from 0 to 9.");
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+
+        public char[,] Solve(int N, int[,] grid)
+        {
             int[,] dp = new int[N, N];
             dp[0, 0] = grid[0, 0];
 
@@ -102,28 +132,5 @@ namespace Lab2.Lab
 
             return output.ToString();
         }
-        private bool ValidateInput(int N, int[,] grid)
-        {
-
-            if (N < 2 || N > 250)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < N; i++)
-            {
-                for (int j = 0; j < N; j++)
-                {
-                    if (grid[i, j] < -1 || grid[i, j] > 10)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
     }
-    
-
 }
