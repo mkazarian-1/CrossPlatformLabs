@@ -10,7 +10,6 @@ namespace Lab1.Test.Labs
 {
     public class SecondLabTests
     {
-        /*private SecondLab secondLab*/
         private readonly SecondLab secondLab = new SecondLab();
 
         [Fact]
@@ -59,25 +58,129 @@ namespace Lab1.Test.Labs
         }
 
         [Fact]
-        public void Solve_ShouldReturnEmptyGrid_ForInvalidInput()
-        {           
-            int N = 0;
-            int[,] grid = new int[0, 0];
+        public void ValidateInputForMinPath_ShouldReturnTrueForValidInput()
+        {
+            // Arrange
+            string[] validInput = {
+            "3",
+            "123",
+            "456",
+            "789"
+        };
 
-            char[,] result = secondLab.Solve(N, grid);
+            // Act
+            bool result = secondLab.ValidateInputForMinPath(validInput);
 
-            Assert.Empty(result);
+            // Assert
+            Assert.True(result);
         }
 
         [Fact]
-        public void Solve_ShouldReturnEmptyGrid_ForNegativeN()
+        public void ValidateInputForMinPath_ShouldReturnFalseForInvalidN()
         {
-            int N = -1;
-            int[,] grid = new int[0, 0];
+            // Arrange
+            string[] invalidInput = {
+            "300", // N is greater than the allowed limit (N > 250)
+            "123",
+            "456",
+            "789"
+        };
 
-            char[,] result = secondLab.Solve(N, grid);
+            // Act
+            bool result = secondLab.ValidateInputForMinPath(invalidInput);
 
-            Assert.Empty(result); 
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void ValidateInputForMinPath_ShouldReturnFalseWhenRowCountIsIncorrect()
+        {
+            // Arrange
+            string[] inputWithMissingRow = {
+            "3",
+            "123",
+            "456" // Missing the third row
+        };
+
+            // Act
+            bool result = secondLab.ValidateInputForMinPath(inputWithMissingRow);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void ValidateInputForMinPath_ShouldReturnFalseWhenRowLengthIsIncorrect()
+        {
+            // Arrange
+            string[] inputWithIncorrectRowLength = {
+            "3",
+            "1234", // Row length is greater than N
+            "456",
+            "789"
+        };
+
+            // Act
+            bool result = secondLab.ValidateInputForMinPath(inputWithIncorrectRowLength);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void ValidateInputForMinPath_ShouldReturnFalseForInvalidCharacter()
+        {
+            // Arrange
+            string[] inputWithInvalidCharacter = {
+            "3",
+            "12a", // Invalid character 'a'
+            "456",
+            "789"
+        };
+
+            // Act
+            bool result = secondLab.ValidateInputForMinPath(inputWithInvalidCharacter);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void ValidateInputForMinPath_ShouldReturnFalseForTooFewRows()
+        {
+            // Arrange
+            string[] inputWithTooFewRows = {
+            "4",
+            "1234",
+            "5678",
+            "9101" // Missing the fourth row
+        };
+
+            // Act
+            bool result = secondLab.ValidateInputForMinPath(inputWithTooFewRows);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void ValidateInputForMinPath_ShouldReturnFalseForTooManyRows()
+        {
+            // Arrange
+            string[] inputWithTooManyRows = {
+            "3",
+            "123",
+            "456",
+            "789",
+            "012" // Extra row
+        };
+
+            // Act
+            bool result = secondLab.ValidateInputForMinPath(inputWithTooManyRows);
+
+            // Assert
+            Assert.False(result);
         }
     }
 }
