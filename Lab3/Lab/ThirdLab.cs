@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lab1.Service;
 
 namespace Lab3.Lab
 {
@@ -10,6 +11,46 @@ namespace Lab3.Lab
     {
         static readonly int[] dx = { 2, 2, 1, 1, -1, -1, -2, -2 };
         static readonly int[] dy = { 1, -1, 2, -2, 2, -2, 1, -1 };
+
+        private readonly FileReader _fileReader = new();
+        private readonly FileWriter _fileWriter = new();
+
+        public void RunLab(string inputPath, string outputPath)
+        {
+            string[] input = _fileReader.ReadFile(inputPath);
+
+            Console.WriteLine($"Input: {inputPath}");
+            Console.WriteLine(string.Join(Environment.NewLine, input));
+            Console.WriteLine();
+
+            if (!ValidateInput(input)) return;
+
+            int n;
+            char[,] board;
+            (int, int) start, end;
+            (n, board, start, end) = ParseInput(input);
+
+            char[,]? newBoard = BFS(board, start, end, n);
+
+            if (newBoard == null)
+            {
+                Console.WriteLine($"Write: {outputPath}");
+                Console.WriteLine("Impossible");
+                Console.WriteLine();
+                _fileWriter.WriteResult(outputPath, "Impossible");
+            }
+            else
+            {
+                Console.WriteLine($"Write: {outputPath}");
+
+                string res = FormatBoardToString(n, newBoard);
+
+                Console.WriteLine(res);
+                Console.WriteLine();
+                _fileWriter.WriteResult(outputPath, res);
+            }
+            Console.WriteLine();
+        }
 
         public bool ValidateInput(string[] input)
         {
@@ -57,7 +98,7 @@ namespace Lab3.Lab
         }
 
 
-        public char[,] BFS(char[,] board, (int, int) start, (int, int) end, int n)
+        public char[,]? BFS(char[,] board, (int, int) start, (int, int) end, int n)
         {
             Queue<(int, int)> queue = new Queue<(int, int)>();
             int[,] dist = new int[n, n];

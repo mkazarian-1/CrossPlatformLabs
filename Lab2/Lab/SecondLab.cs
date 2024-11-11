@@ -3,11 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lab1.Service;
 
 namespace Lab2.Lab
 {
     public class SecondLab
     {
+        private readonly FileReader _fileReader = new();
+        private readonly FileWriter _fileWriter = new();
+        
+        public void RunLab(string inputPath, string outputPath)
+        {
+            int N;
+            int[,] grid;
+            char[,] result;
+
+            string[] input = _fileReader.ReadFile(inputPath);
+
+            Console.WriteLine($"Input: {inputPath}");
+            Console.WriteLine(string.Join(Environment.NewLine, input));
+            Console.WriteLine();
+
+            if (!ValidateInputForMinPath(input)) return;
+
+            (N, grid) = Parser(input);
+
+            result = Solve(N,grid);
+            string res = ResultFormation(result);
+
+            Console.WriteLine($"Write: {outputPath}");
+            Console.WriteLine(res);
+            Console.WriteLine($"\n");
+
+            _fileWriter.WriteResult(outputPath, res.ToString());
+        }
+        
         public bool ValidateInputForMinPath(string[] input)
         {
             if (!int.TryParse(input[0], out int n) || n < 2 || n > 250)

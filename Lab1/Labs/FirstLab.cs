@@ -3,11 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lab1.Service;
 
 namespace Lab1.Labs
 {
     public class FirstLab
     {
+        private readonly FileReader _fileReader = new();
+        private readonly FileWriter _fileWriter = new();
+        
+        public void RunLab(string inputPath, string outputPath)
+        {
+            string[] input = _fileReader.ReadFile(inputPath);
+
+            Console.WriteLine($"Input: {inputPath}");
+            Console.WriteLine(string.Join(Environment.NewLine, input));
+            Console.WriteLine();
+
+            if (!ValidateInputForRooks(input)) return;
+
+            int N, K;
+            (N, K) = ParseNKValues(input);
+
+            int res = CalculateRookPlacements(N, K);
+
+            Console.WriteLine($"N={N},K={K}, res = {res}\n");
+
+            Console.WriteLine($"Write: {outputPath}");
+            Console.WriteLine(res);
+            Console.WriteLine($"\n");
+
+            _fileWriter.WriteResult(outputPath, res.ToString());
+        }
+        
         public int CalculateRookPlacements(int N, int K)
         {
             if (!Validate(N, K)) return 0;
@@ -21,13 +49,13 @@ namespace Lab1.Labs
             return (accommodationNK * accommodationNK) / factorialK;
         }
 
-        public (int N, int K) ParseNKValues(string[] lines)
+        private (int N, int K) ParseNKValues(string[] lines)
         {
             string[] parts = lines[0].Split(' ');
             return (int.Parse(parts[0]), int.Parse(parts[1]));
         }
 
-        public bool ValidateInputForRooks(string[] input)
+        private bool ValidateInputForRooks(string[] input)
         {
             if (input.Length == 0)
             {
@@ -48,22 +76,25 @@ namespace Lab1.Labs
                 Console.WriteLine("The input contains invalid integer values for N or K.");
                 return false;
             }
+
             return true;
         }
 
 
-            private bool Validate(int N, int K)
+        private bool Validate(int N, int K)
         {
             if (N <= 0 || N > 8 || K <= 0 || K > 8)
             {
                 Console.WriteLine("Invalid input. N and K must be natural numbers less than or equal to 8.");
                 return false;
             }
+
             if (K > N)
             {
                 Console.WriteLine("Invalid input. K cannot be greater than N.");
                 return false;
             }
+
             return true;
         }
 
@@ -74,10 +105,8 @@ namespace Lab1.Labs
             {
                 result *= i;
             }
+
             return result;
         }
-
-
-
     }
 }
