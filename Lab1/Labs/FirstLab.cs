@@ -49,13 +49,13 @@ namespace Lab1.Labs
             return (accommodationNK * accommodationNK) / factorialK;
         }
 
-        private (int N, int K) ParseNKValues(string[] lines)
+        public (int N, int K) ParseNKValues(string[] lines)
         {
             string[] parts = lines[0].Split(' ');
             return (int.Parse(parts[0]), int.Parse(parts[1]));
         }
 
-        private bool ValidateInputForRooks(string[] input)
+        public bool ValidateInputForRooks(string[] input)
         {
             if (input.Length == 0)
             {
@@ -81,7 +81,7 @@ namespace Lab1.Labs
         }
 
 
-        private bool Validate(int N, int K)
+        public bool Validate(int N, int K)
         {
             if (N <= 0 || N > 8 || K <= 0 || K > 8)
             {
@@ -98,7 +98,7 @@ namespace Lab1.Labs
             return true;
         }
 
-        private static int Factorial(int num)
+        public static int Factorial(int num)
         {
             int result = 1;
             for (int i = 2; i <= num; i++)

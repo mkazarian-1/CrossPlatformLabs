@@ -1,0 +1,46 @@
+﻿@{
+ViewData["Title"] = "Home Page";
+}
+
+<div class="container text-center mt-5">
+    <h1 class="display-4">Welcome to My Lab Website</h1>
+    <p class="lead">Explore various labs and learn about building web applications with ASP.NET Core.</p>
+
+    <hr class="my-5">
+
+    <h2 class="mb-4">Available Labs</h2>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Lab 1</h5>
+                    <p class="card-text">Basic string processing and transformation.</p>
+                    <a href="/Labs/Index?SelectedLab=Lab1" class="btn btn-primary">Go to Lab 1</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Lab 2</h5>
+                    <p class="card-text">Advanced text parsing techniques.</p>
+                    <a href="/Labs/Index?SelectedLab=Lab2" class="btn btn-primary">Go to Lab 2</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Lab 3</h5>
+                    <p class="card-text">Custom rules for text manipulation.</p>
+                    <a href="/Labs/Index?SelectedLab=Lab3" class="btn btn-primary">Go to Lab 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-5">
+        <p>&copy; @DateTime.Now.Year - My Lab Website. Powered by ASP.NET Core.</p>
+    </footer>
+</div>
