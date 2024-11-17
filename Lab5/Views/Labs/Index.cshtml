@@ -1,0 +1,44 @@
+@model Lab5.Models.LabTextViewModel
+
+@{
+    ViewData["Title"] = "Labs";
+    var selectedLab = ViewData["SelectedLab"]?.ToString() ?? "Lab1"; 
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Labs variant #11 Kozryan Mykhailo</h1>
+
+    <form method="post" id="labForm" asp-controller="Labs" asp-action="@selectedLab">
+        <div class="mb-3">
+            <label for="labSelector" class="form-label"><strong>Select Lab:</strong></label>
+            <select class="form-select" id="labSelector" name="LabSelector" onchange="updateAction()">
+                <option value="Lab1" selected="@(selectedLab == "Lab1")">Lab 1</option>
+                <option value="Lab2" selected="@(selectedLab == "Lab2")">Lab 2</option>
+                <option value="Lab3" selected="@(selectedLab == "Lab3")">Lab 3</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="inputText" class="form-label"><strong>Enter Your Text:</strong></label>
+            <textarea id="inputText" class="form-control" name="InputText" rows="8">@Model.InputText</textarea>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-lg">Process</button>
+        </div>
+    </form>
+
+    <div class="mt-4">
+        <h3 class="mb-3">Processed Text:</h3>
+        <textarea id="outputText" class="form-control" name="OutputText" rows="8" readonly>@Model.OutputText</textarea>
+    </div>
+</div>
+
+<script>
+        function updateAction() {
+            const labForm = document.getElementById("labForm");
+            const labSelector = document.getElementById("labSelector");
+            const selectedLab = labSelector.value;
+            labForm.action = `/Labs/${selectedLab}`;
+        }
+</script>
