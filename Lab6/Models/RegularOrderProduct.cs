@@ -3,8 +3,8 @@
 public class RegularOrderProduct
 {
     public int RegularOrderId { get; set; }
-    public int ProductId { get; set; }
+    public RegularOrder? RegularOrder { get; set; }
 
-    public RegularOrder RegularOrder { get; set; }
-    public Product Product { get; set; }
+    public int ProductId { get; set; }
+    public Product? Product { get; set; }
 }

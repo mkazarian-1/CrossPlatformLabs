@@ -1,9 +1,12 @@
-﻿namespace Lab6.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Lab6.Models;
 
 public class RefOrderStatus
 {
-    public int OrderStatusCode { get; set; }
-    public string OrderStatusDescription { get; set; }
+    [Key]
+    public int RefOrderStatusId { get; set; }
+    public string? RefOrderStatusDescription { get; set; }
 
-    public ICollection<ActualOrder> ActualOrders { get; set; }
+    public ICollection<ActualOrder>? ActualOrders { get; set; } = new List<ActualOrder>();
 }

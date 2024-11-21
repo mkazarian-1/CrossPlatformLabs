@@ -1,9 +1,12 @@
-﻿namespace Lab6.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Lab6.Models;
 
 public class RefDeliveryStatus
 {
-    public int DeliveryStatusCode { get; set; }
-    public string DeliveryStatusDescription { get; set; }
+    [Key]
+    public int RefDeliveryStatusId { get; set; }
+    public string? RefDeliveryStatusDescription { get; set; }
 
-    public ICollection<Delivery> Deliveries { get; set; }
+    public ICollection<Delivery>? Deliveries { get; set; } = new List<Delivery>();
 }

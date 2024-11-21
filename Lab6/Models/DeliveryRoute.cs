@@ -2,9 +2,9 @@
 
 public class DeliveryRoute
 {
-    public int RouteId { get; set; }
-    public string RouteName { get; set; }
-    public string OtherRouteDetails { get; set; }
+    public int DeliveryRouteId { get; set; }
+    public string? DeliveryRouteName { get; set; }
+    public string? OtherDeliveryRouteDetails { get; set; }
 
-    public ICollection<DeliveryRouteLocation> DeliveryRouteLocations { get; set; }
+    public ICollection<DeliveryRouteLocation>? DeliveryRouteLocations { get; set; } = new List<DeliveryRouteLocation>();
 }

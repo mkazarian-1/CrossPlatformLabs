@@ -2,12 +2,12 @@
 
 public class DeliveryRouteLocation
 {
-    public int LocationCode { get; set; }
-    public int RouteId { get; set; }
-    public int LocationAddressId { get; set; }
-    public string LocationName { get; set; }
-    public string OtherLocationDetails { get; set; }
+    public int DeliveryRouteLocationId { get; set; }
+    public int DeliveryRouteId { get; set; }
+    public DeliveryRoute? DeliveryRoute { get; set; }
+    public int AddressId { get; set; }
+    public Address? Address { get; set; }
+    public string? LocationName { get; set; }
+    public string? OtherLocationDetails { get; set; }
 
-    public DeliveryRoute Route { get; set; }
-    public Address Address { get; set; }
 }

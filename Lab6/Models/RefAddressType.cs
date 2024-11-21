@@ -1,9 +1,12 @@
-﻿namespace Lab6.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Lab6.Models;
 
 public class RefAddressType
 {
-    public int AddressTypeCode { get; set; }
-    public string AddressTypeDescription { get; set; }
+    [Key]
+    public int RefAddressTypeId { get; set; }
+    public string? RefAddressTypeDescription { get; set; }
 
-    public ICollection<CustomerAddress> CustomerAddresses { get; set; }
+    public ICollection<CustomerAddress>? CustomerAddresses { get; set; } = new List<CustomerAddress>();
 }
