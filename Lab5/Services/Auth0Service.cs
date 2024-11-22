@@ -25,16 +25,7 @@ public class Auth0Service
 
     public async Task CreateUserAsync(RegisterViewModel model)
     {
-
-        AuthenticationApiClient tokenClient = new(new Uri($"https://{_domain}"));
-        AccessTokenResponse tokenResponse = await tokenClient.GetTokenAsync(new ClientCredentialsTokenRequest
-        {
-            ClientId = _clientId,
-            ClientSecret = _clientSecret,
-            Audience = _audience
-        });
-
-        ManagementApiClient managementClient = new(tokenResponse.AccessToken, new Uri($"https://{_domain}/api/v2"));
+        ManagementApiClient managementClient = new(GetAccessTokenAsync().ToString(), new Uri($"https://{_domain}/api/v2"));
 
         UserCreateRequest userCreateRequest = new()
         {
@@ -82,5 +73,18 @@ public class Auth0Service
             Phone = user.UserMetadata?["Phone"]?.ToString() ?? alternativeValue,
             ProfileImage = user.Picture
         };
+    }
+    
+    public async Task<string> GetAccessTokenAsync()
+    {
+        AuthenticationApiClient tokenClient = new(new Uri($"https://{_domain}"));
+        AccessTokenResponse tokenResponse = await tokenClient.GetTokenAsync(new ClientCredentialsTokenRequest
+        {
+            ClientId = _clientId,
+            ClientSecret = _clientSecret,
+            Audience = _audience
+        });
+
+        return tokenResponse.AccessToken;
     }
 }
