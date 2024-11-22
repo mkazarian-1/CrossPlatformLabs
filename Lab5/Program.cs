@@ -13,6 +13,12 @@ builder.Services.AddAuthentication("AuthScheme")
     });
 builder.Services.AddAuthorization();
 
+builder.Services.AddHttpClient("Lab6Api", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Lab6Api:BaseUrl"]);
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,0 +1,62 @@
+﻿@model Lab5.Dto.CustomerFullDto
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<h1>Customer Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h3>@Model.CustomerName</h3>
+        <p><strong>Email:</strong> @Model.CustomerEmail</p>
+        <p><strong>Phone:</strong> @Model.CustomerPhone</p>
+        <p><strong>Date Became Customer:</strong> @Model.DateBecameCustomer.ToShortDateString()</p>
+        <p><strong>Other Details:</strong> @Model.OtherCustomerDetails</p>
+
+        <h4>Payment Method</h4>
+        <p>
+            <strong>Description:</strong> @Model.RefPaymentMethod?.RefPaymentMethodDescription
+        </p>
+
+        <h4>Addresses</h4>
+        @if (Model.CustomerAddresses != null && Model.CustomerAddresses.Any())
+        {
+            <ul>
+                @foreach (var address in Model.CustomerAddresses)
+                {
+                    <li>
+                        <p><strong>Address:</strong> @address.Address?.Line1, @address.Address?.City</p>
+                        <p><strong>Zip/Postcode:</strong> @address.Address?.ZipPostcode</p>
+                        <p><strong>Country:</strong> @address.Address?.Country</p>
+                        <p><strong>Valid From:</strong> @address.DateFrom.ToShortDateString()</p>
+                        <p><strong>Valid To:</strong> @address.DateTo.ToShortDateString()</p>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No addresses available.</p>
+        }
+
+        <h4>Regular Orders</h4>
+        @if (Model.RegularOrders != null && Model.RegularOrders.Any())
+        {
+            <ul>
+                @foreach (var order in Model.RegularOrders)
+                {
+                    <li>
+                        <p><strong>Order ID:</strong> @order.RegularOrderId</p>
+                        <p><strong>Distributor ID:</strong> @order.DistributorId</p>
+                        <p><strong>Order Details:</strong> @order.OrderDetails</p>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No regular orders found.</p>
+        }
+    </div>
+</div>

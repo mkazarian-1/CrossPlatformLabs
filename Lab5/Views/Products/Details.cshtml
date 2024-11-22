@@ -1,0 +1,66 @@
+﻿@model Lab5.Dto.ProductFullDto
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<h1>Product Details</h1>
+
+<div class="card mt-4 shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h2>@Model.ProductName</h2>
+    </div>
+    <div class="card-body">
+        <p><strong>Price:</strong> @Model.ProductPrice.ToString("C")</p>
+        <p><strong>Description:</strong> @Model.ProductDescription</p>
+        <p><strong>Supplier:</strong> @Model.Supplier!.SupplierDetails (ID: @Model.Supplier.SupplierId)</p>
+    </div>
+</div>
+
+@if (Model.RegularOrderProducts != null && Model.RegularOrderProducts.Any())
+{
+    <div class="mt-4">
+        <h3>Regular Orders</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Regular Order ID</th>
+                <th>Product ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var order in Model.RegularOrderProducts)
+            {
+                <tr>
+                    <td>@order.RegularOrderId</td>
+                    <td>@order.ProductId</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+
+@if (Model.ActualOrderProducts != null && Model.ActualOrderProducts.Any())
+{
+    <div class="mt-4">
+        <h3>Actual Orders</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Actual Order ID</th>
+                <th>Product ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var order in Model.ActualOrderProducts)
+            {
+                <tr>
+                    <td>@order.ActualOrderId</td>
+                    <td>@order.ProductId</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

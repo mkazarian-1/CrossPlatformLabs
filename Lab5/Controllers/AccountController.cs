@@ -9,8 +9,6 @@ namespace Lab5.Controllers;
 
 public class AccountController(Auth0Service auth0UserService) : Controller
 {
-    private readonly Auth0Service _auth0UserService = auth0UserService;
-
     [HttpGet]
     public IActionResult Register()
     {
@@ -29,7 +27,7 @@ public class AccountController(Auth0Service auth0UserService) : Controller
 
         try
         {
-            await _auth0UserService.CreateUserAsync(model);
+            await auth0UserService.CreateUserAsync(model);
             return RedirectToAction("Index", "Home");
         }
         catch (Exception ex)
@@ -55,7 +53,7 @@ public class AccountController(Auth0Service auth0UserService) : Controller
 
         try
         {
-            UserProfileViewModel userProfile = await _auth0UserService.GetUser(model);
+            UserProfileViewModel userProfile = await auth0UserService.GetUser(model);
             List<Claim> claims =
             [
                 new Claim(ClaimTypes.NameIdentifier, userProfile.Email),
